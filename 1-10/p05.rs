@@ -1,19 +1,12 @@
-enum List<T> {
-    Cons(T, ~List<T>),
-    Nil
-}
-
-fn rev<T: Clone>(list: &List<T>) -> List<T> {
-    fn rev_aux<T: Clone>(list: &List<T>, acc: List<T>) -> List<T> {
-        match *list {
-            Nil => acc,
-            Cons(ref elem, ~ref rest) => rev_aux(rest, Cons((*elem).clone(), ~acc))
-        }
+fn rev<T: Clone>(list: &~[T]) -> ~[T] {
+    let mut tsli = ~[];
+    for elem in list.iter() {
+        tsli.unshift(elem.clone());
     }
-    rev_aux(list, Nil)
+    tsli
 }
 
 fn main() {
-    let list: List<char> = Cons('a', ~Cons('b', ~Cons('c', ~Cons('d', ~Nil))));
+    let list = ~['a', 'b', 'c', 'd', 'e'];
     println!("{:?}", rev(&list));
 }
