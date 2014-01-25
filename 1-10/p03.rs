@@ -1,18 +1,15 @@
-enum List<T> {
-    Cons(T, ~List<T>),
-    Nil
-}
-
-fn kth<'a, T>(k: uint, list: &'a List<T>) -> Option<&'a T> {
-    match *list {
-        Nil => None,
-        Cons(ref elem, _) if k == 1 => Some(elem),
-        Cons(_, ~ref rest) => kth(k-1, rest)
+fn kth<'a, T>(k:uint, list: &'a ~[T]) -> Option<&'a T> {
+    if list.len() >= k && k > 0{
+        Some(&list[k-1])
+    } else {
+        None
     }
 }
 
 fn main() {
-    let list: List<char> = Cons('a', ~Cons('b', ~Cons('c', ~Cons('d', ~Nil))));
+    let list = ~['a', 'b', 'c', 'd', 'e'];
     println!("{:?}", kth(3, &list));
-    println!("{:?}", kth(7, &list));
+
+    let list = ~['a'];
+    println!("{:?}", kth(3, &list));
 }
