@@ -1,24 +1,15 @@
-enum List<T> {
-    Cons(T, ~List<T>),
-    Nil
-}
-
-fn lastbutone<'a, T>(list: &'a List<T>) -> Option<(&'a T, &'a T)> {
-    match *list {
-        Nil => None,
-        Cons(_, ~Nil) => None,
-        Cons(ref butone, ~Cons(ref last, ~Nil)) => Some((butone, last)),
-        Cons(_, ~ref rest) => lastbutone(rest)
+fn lastbutone<'a, T>(list: &'a ~[T]) -> Option<(&'a T, &'a T)> {
+    if list.len() > 2 {
+        Some((&list[list.len()-2], &list[list.len()-1]))
+    } else {
+        None
     }
 }
 
 fn main() {
-    let list: List<char> = Cons('a', ~Cons('b', ~Cons('c', ~Nil)));
+    let list = ~['a', 'b', 'c', 'd', 'e'];
     println!("{:?}", lastbutone(&list));
 
-    let list: List<uint> = Cons(6, ~Cons(7, ~Cons(42, ~Nil)));
-    println!("{:?}", lastbutone(&list));
-
-    let list: List<~str> = Cons(~"six", ~Cons(~"seven", ~Cons(~"forty-two", ~Nil)));
+    let list = ~['a'];
     println!("{:?}", lastbutone(&list));
 }
