@@ -1,4 +1,9 @@
-fn encode<T: Clone+Eq>(list: &[T]) -> ~[(uint, T)] {
+enum Group<T> {
+    One(T),
+    Many(uint, T)
+}
+
+fn encode<T: Clone+Eq>(list: &[T]) -> ~[Group<T>] {
     let mut it = list.iter();
     let mut result = ~[];
     let mut l = 1;
@@ -6,7 +11,12 @@ fn encode<T: Clone+Eq>(list: &[T]) -> ~[(uint, T)] {
         match it.nth(l - 1) {
             Some(e) => {
                 l = it.take_while(|&a| *a == *e).len() + 1;
-                result.push((l, e.clone()))
+                result.push(
+                    match l {
+                        1 => One(e.clone()),
+                        _ => Many(l, e.clone())
+                    }
+                    )
             },
             None    => break
         }
