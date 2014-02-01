@@ -1,5 +1,5 @@
 fn split<'a, T>(list: &'a [T], n: uint) -> (&'a [T], &'a [T]) {
-    (list.slice(0, n), list.slice(n, list.len()))
+    (list.slice_to(n), list.slice_from(n))
 }
 
 fn main() {
