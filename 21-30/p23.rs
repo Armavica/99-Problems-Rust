@@ -1,6 +1,6 @@
 use std::rand::{task_rng, Rng};
 
-fn rnd_select<'a, T: Clone>(list: &'a [T], n: uint) -> ~[&'a T] {
+fn rnd_select<'a, T>(list: &'a [T], n: uint) -> ~[&'a T] {
     task_rng().sample(list.iter(), n)
 }
 
