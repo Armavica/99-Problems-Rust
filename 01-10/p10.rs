@@ -29,7 +29,7 @@ fn encode<T: Clone>(list: ~[~[T]]) -> ~[Node<T>] {
              match *e {
                  [ref a]     => One(a.clone()),
                  [ref a, ..] => Many(e.len(), a.clone()),
-                 _           => fail!()
+                 _           => unreachable!()
              })
 }
 
