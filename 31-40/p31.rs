@@ -3,16 +3,16 @@ fn is_prime(n: int) -> bool {
         return n == 2;
     }
     let mut primes = ~[2];
-    let mut i = 1;
+    let mut i = 3;
     while std::num::pow(i, 2) < n {
         let &p = primes.last().unwrap();
         if n % p == 0 {
             return false;
         }
-        i += 2;
-        if primes.iter().all(|&x| i%x != 0) {
-            primes.push(i);
+        while primes.iter().any(|&x| i%x == 0) {
+            i += 2;
         }
+        primes.push(i);
     }
     true
 }
