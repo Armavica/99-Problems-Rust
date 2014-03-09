@@ -26,10 +26,9 @@ fn pack<T: Clone+Eq>(list: &[T]) -> ~[~[T]] {
 
 fn encode<T: Clone>(list: ~[~[T]]) -> ~[Node<T>] {
     list.map(|e|
-             match *e {
-                 [ref a]     => One(a.clone()),
-                 [ref a, ..] => Many(e.len(), a.clone()),
-                 _           => unreachable!()
+             match e.len() {
+                 1 => One(e[0].clone()),
+                 n => Many(n, e[0].clone())
              })
 }
 
