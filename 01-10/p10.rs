@@ -3,6 +3,17 @@ enum Node<T> {
     Many(uint, T)
 }
 
+impl<T: Eq> Eq for Node<T> {
+    fn eq(&self, other: &Node<T>) -> bool {
+        match (self, other) {
+            (&One(ref a), &One(ref b)) => a == b,
+            (&Many(ref va, ref a), &Many(ref vb, ref b)) => va == vb && a == b,
+            _ => false
+        }
+    }
+}
+
+
 fn pack<T: Clone+Eq>(list: &[T]) -> ~[~[T]] {
     let mut it = list.iter();
     let mut result = ~[];
@@ -37,5 +48,10 @@ fn main() {
     let list =
         ~['a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e'];
 
-    println!("{:?}", encode(pack(list)));
+    assert!(encode(pack(list)) == ~[Many(4, 'a'),
+                                    One('b'),
+                                    Many(2, 'c'),
+                                    Many(2, 'a'),
+                                    One('d'),
+                                    Many(4, 'e')])
 }

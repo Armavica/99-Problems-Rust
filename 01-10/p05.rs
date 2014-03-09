@@ -1,5 +1,8 @@
+fn rev<T>(list: ~[T]) -> ~[T] {
+    list.move_rev_iter().collect()
+}
+
 fn main() {
     let list = ~['a', 'b', 'c', 'd', 'e'];
-    let l:~[&char] = list.rev_iter().collect(); // Cheat
-    println!("{:?}", l);
+    assert!(rev(list) == ~['e', 'd', 'c', 'b', 'a']);
 }

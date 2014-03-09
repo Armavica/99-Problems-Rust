@@ -8,8 +8,8 @@ fn kth<'a, T>(k:uint, list: &'a [T]) -> Option<&'a T> {
 
 fn main() {
     let list = ~['a', 'b', 'c', 'd', 'e'];
-    println!("{:?}", kth(3, list));
+    assert!(kth(3, list) == Some(&'c'));
 
     let list = ~['a'];
-    println!("{:?}", kth(3, list));
+    assert!(kth(3, list) == None)
 }

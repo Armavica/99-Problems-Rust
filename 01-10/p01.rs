@@ -6,7 +6,7 @@ fn last<'a, T>(list: &'a [T]) -> Option<&'a T> {
 }
 
 fn main() {
-    let list = ~['a', 'b', 'c'];
-    println!("{:?}", last(list));
-    println!("{:?}", list.last()); // Cheat
+    let list = ['a', 'b', 'c'];
+    assert!(last(list) == Some(&'c'));
+    assert!(list.last() == Some(&'c')); // Cheat
 }

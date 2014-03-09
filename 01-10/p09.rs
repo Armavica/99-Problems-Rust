@@ -23,5 +23,11 @@ fn main() {
     let list =
         ~['a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e'];
 
-    println!("{:?}", pack(list));
+    assert!(pack(list) ==
+            ~[~['a', 'a', 'a', 'a'],
+              ~['b'],
+              ~['c', 'c'],
+              ~['a', 'a'],
+              ~['d'],
+              ~['e', 'e', 'e', 'e']]);
 }

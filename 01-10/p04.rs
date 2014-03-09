@@ -1,7 +1,11 @@
+fn length<T>(list: &[T]) -> uint {
+    list.len()
+}
+
 fn main() {
     let list = ~['a', 'b', 'c'];
-    println!("{}", list.len());
+    assert!(length(list) == 3);
 
     let list: ~[uint] = ~[];
-    println!("{}", list.len());
+    assert!(length(list) == 0);
 }

@@ -6,9 +6,9 @@ fn lastbutone<'a, T>(list: &'a [T]) -> Option<(&'a T, &'a T)> {
 }
 
 fn main() {
-    let list = ~['a', 'b', 'c', 'd', 'e'];
-    println!("{:?}", lastbutone(list));
+    let list = ['a', 'b', 'c', 'd', 'e'];
+    assert!(lastbutone(list) == Some((&'d', &'e')));
 
-    let list = ~['a'];
-    println!("{:?}", lastbutone(list));
+    let list = ['a'];
+    assert!(lastbutone(list) == None);
 }

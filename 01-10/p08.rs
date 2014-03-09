@@ -1,7 +1,13 @@
+fn compress<T: Eq>(list: ~[T]) -> ~[T] {
+    let mut list = list;
+    list.dedup();
+    list
+}
+
+
 fn main() {
-    let mut list =
+    let list =
         ~['a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e'];
 
-    list.dedup(); // Cheat
-    println!("{:?}", list);
+    assert!(compress(list) == ~['a', 'b', 'c', 'a', 'd', 'e']);
 }

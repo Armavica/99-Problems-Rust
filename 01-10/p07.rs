@@ -15,5 +15,5 @@ fn main() {
     let nlist =
         ~[One('a'), Many(~[One('b'), Many(~[One('c'), One('d')]), One('e')])];
 
-    println!("{:?}", flatten(&nlist));
+    assert!(flatten(&nlist) == ~['a', 'b', 'c', 'd', 'e']);
 }
