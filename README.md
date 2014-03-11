@@ -20,6 +20,6 @@ TODO
   * Problems 47 and 48;
   * Problem 50;
   * Problem 60;
-  * Problems 65 to 73;
+  * Problems 63 to 73;
   * Problems 80 to 99.
 
