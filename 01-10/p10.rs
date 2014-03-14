@@ -1,3 +1,12 @@
+//! Problem 10: Vectors: encode
+//!
+//! Run-length encoding of a vector
+//! Memory refresh: http://en.wikipedia.org/wiki/Run-length_encoding
+//!
+//! Your function must have this signature:
+//! `fn encode<T: Clone>(vector: ~[~[T]]) -> ~[Node<T>]`
+//!
+
 enum Node<T> {
     One(T),
     Many(uint, T)
@@ -13,9 +22,8 @@ impl<T: Eq> Eq for Node<T> {
     }
 }
 
-
-fn pack<T: Clone+Eq>(list: &[T]) -> ~[~[T]] {
-    let mut it = list.iter();
+fn pack<T: Clone+Eq>(vector: &[T]) -> ~[~[T]] {
+    let mut it = vector.iter();
     let mut result = ~[];
     let mut l = 1;
     loop {
@@ -35,23 +43,22 @@ fn pack<T: Clone+Eq>(list: &[T]) -> ~[~[T]] {
     result
 }
 
-fn encode<T: Clone>(list: ~[~[T]]) -> ~[Node<T>] {
-    list.map(|e|
-             match e.len() {
-                 1 => One(e[0].clone()),
-                 n => Many(n, e[0].clone())
-             })
+fn encode<T: Clone>(vector: ~[~[T]]) -> ~[Node<T>] {
+    vector.map(|e| match e.len() {
+        1 => One(e[0].clone()),
+        n => Many(n, e[0].clone())
+    })
 }
 
+#[test]
+fn test10_encode() {
+    let vector = ~['a', 'a', 'a', 'a', 'b', 'c', 'c',
+    'a', 'a', 'd', 'e', 'e', 'e', 'e'];
 
-fn main() {
-    let list =
-        ~['a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e'];
-
-    assert!(encode(pack(list)) == ~[Many(4, 'a'),
-                                    One('b'),
-                                    Many(2, 'c'),
-                                    Many(2, 'a'),
-                                    One('d'),
-                                    Many(4, 'e')])
+    assert!(encode(pack(vector)) == ~[Many(4, 'a'),
+    One('b'),
+    Many(2, 'c'),
+    Many(2, 'a'),
+    One('d'),
+    Many(4, 'e')])
 }
