@@ -3,23 +3,10 @@ enum BinaryTree<T> {
     Empty
 }
 
+#[deriving(Eq)]
 enum PosBinaryTree<T> {
     PosNode(T, (int, int), ~PosBinaryTree<T>, ~PosBinaryTree<T>),
     PosEmpty
-}
-
-impl<T: Eq> Eq for PosBinaryTree<T> {
-    fn eq(&self, other: &PosBinaryTree<T>) -> bool {
-        match (self, other) {
-            (&PosEmpty, &PosEmpty) => true,
-            (&PosNode(ref lv, ref posl, ~ref ll, ~ref lr),
-             &PosNode(ref rv, ref posr, ~ref rl, ~ref rr)) => lv == rv &&
-                                                              posl == posr &&
-                                                              ll == rl &&
-                                                              lr == rr,
-            _ => false
-        }
-    }
 }
 
 fn layout_binary_tree<T: Clone>(tree: &BinaryTree<T>) -> PosBinaryTree<T> {

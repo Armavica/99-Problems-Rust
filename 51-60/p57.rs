@@ -1,19 +1,10 @@
 #[deriving(Clone)]
+#[deriving(Eq)]
 enum BinaryTree<T> {
     Node(T, ~BinaryTree<T>, ~BinaryTree<T>),
     Empty
 }
 
-impl<T: Eq> Eq for BinaryTree<T> {
-    fn eq(&self, other: &BinaryTree<T>) -> bool {
-        match (self, other) {
-            (&Empty, &Empty) => true,
-            (&Node(ref a, ref ll, ref lr), &Node(ref b, ref rl, ref rr)) if a == b =>
-                ll == rl && lr == rr,
-            _ => false
-        }
-    }
-}
 
 fn construct<T: Ord>(list: ~[T]) -> BinaryTree<T> {
     fn insert<T: Ord>(tree: BinaryTree<T>, elem: T) -> BinaryTree<T> {

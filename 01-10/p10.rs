@@ -1,18 +1,8 @@
+#[deriving(Eq)]
 enum Node<T> {
     One(T),
     Many(uint, T)
 }
-
-impl<T: Eq> Eq for Node<T> {
-    fn eq(&self, other: &Node<T>) -> bool {
-        match (self, other) {
-            (&One(ref a), &One(ref b)) => a == b,
-            (&Many(ref va, ref a), &Many(ref vb, ref b)) => va == vb && a == b,
-            _ => false
-        }
-    }
-}
-
 
 fn pack<T: Clone+Eq>(list: &[T]) -> ~[~[T]] {
     let mut it = list.iter();

@@ -1,19 +1,7 @@
+#[deriving(Eq)]
 enum BinaryTree<T> {
     Node(T, ~BinaryTree<T>, ~BinaryTree<T>),
     Empty
-}
-
-impl<T: Eq> Eq for BinaryTree<T> {
-    fn eq(&self, other: &BinaryTree<T>) -> bool {
-        match (self, other) {
-            (&Empty, &Empty) => true,
-            (&Node(ref lv, ~ref ll, ~ref lr),
-             &Node(ref rv, ~ref rl, ~ref rr)) => lv == rv &&
-                                                 ll == rl &&
-                                                 lr == rr,
-            _ => false
-        }
-    }
 }
 
 fn complete_binary_tree(n: uint) -> BinaryTree<uint> {
