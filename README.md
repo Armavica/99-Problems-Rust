@@ -24,6 +24,6 @@ TODO
   * Problem 67 (partially);
   * Reimplement problem 68 with difference lists;
   * Reimplement problem 69 with difference lists;
-  * Problems 70 to 73;
+  * Problems 71 to 73;
   * Problems 80 to 99.
 
