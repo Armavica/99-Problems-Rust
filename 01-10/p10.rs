@@ -1,6 +1,6 @@
 //! Problem 10: Vectors: encode
 //!
-//! Run-length encoding of a vector
+//! Run-length encoding of a vector.
 //! Memory refresh: http://en.wikipedia.org/wiki/Run-length_encoding
 //!
 //! Your function must have this signature:

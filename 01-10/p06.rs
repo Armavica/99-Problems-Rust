@@ -1,7 +1,6 @@
-//! Problem 06: Vectors: is palindrome
+//! Problem 06: Vectors: is_palindrome
 //!
 //! Determine if the vector passed is a palindrome or not.
-//! You can do it by the iterative or the recursive way.
 //!
 //! Your function must have this signature:
 //! `fn is_palindrome<T: Eq>(vector: &[T]) -> bool`

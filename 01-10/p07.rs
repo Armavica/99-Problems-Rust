@@ -1,9 +1,18 @@
 //! Problem 07: Vectors: flatten
 //!
+//! A way to define a nested vector in Rust is to think of it as a vector of
+//! nodes, a node being defined by the following type:
+//! ```
+//! enum Node<T> {
+//!     One(T),
+//!     Many(~[Node<T>])
+//! }
+//! ```
+//!
 //! Flatten a nested vector structure.
 //!
 //! Your function must have this signature:
-//! `fn flatten<t: clone>(n_vector: &~[node<t>]) -> ~[t]`
+//! `fn flatten<T: Clone>(n_vector: &~[Node<T>]) -> ~[T]`
 //!
 
 enum Node<T> {

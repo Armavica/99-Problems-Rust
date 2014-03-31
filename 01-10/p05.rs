@@ -4,7 +4,7 @@
 //! Problem 05: Vectors: rev
 //!
 //! Reverse a vector.
-//! Rust standard library have a method for this.
+//! Rust standard library has a method for this.
 //! You can use it or reimplement it.
 //!
 //! Your function must have this signature:
