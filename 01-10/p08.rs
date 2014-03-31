@@ -1,13 +1,22 @@
-fn compress<T: Eq>(list: ~[T]) -> ~[T] {
-    let mut list = list;
-    list.dedup();
-    list
+//! Problem 08: Vectors: compress
+//!
+//! Eliminate consecutive duplicates of vector elements.
+//!
+//! Your function must have this signature:
+//! `fn compress<T: Eq>(vector: ~[T]) -> ~[T]`
+//!
+
+fn compress<T: Eq>(vector: ~[T]) -> ~[T] {
+    let mut vector = vector;
+    vector.dedup();
+    vector
 }
 
+#[test]
+fn test08_compress() {
+    let vector = ~['a', 'a', 'a', 'a', 'b', 'c', 'c',
+    'a', 'a', 'd', 'e', 'e', 'e', 'e'];
 
-fn main() {
-    let list =
-        ~['a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e'];
-
-    assert!(compress(list) == ~['a', 'b', 'c', 'a', 'd', 'e']);
+    assert!(compress(vector) == ~['a', 'b', 'c', 'a', 'd', 'e']);
 }
+

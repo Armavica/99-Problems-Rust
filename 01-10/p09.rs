@@ -1,7 +1,16 @@
-fn pack<T: Clone+Eq>(list: &[T]) -> ~[~[T]] {
-    let mut it = list.iter();
+//! Problem 09: Vectors: pack
+//! 
+//! Pack consecutive duplicates of vectors elements into sub-vectors.
+//!
+//! Your function must have this signature:
+//! `fn pack<T: Clone+Eq>(vector: &[T]) -> ~[~[T]]`
+//!
+
+fn pack<T: Clone+Eq>(vector: &[T]) -> ~[~[T]] {
+    let mut it = vector.iter();
     let mut result = ~[];
     let mut l = 1;
+
     loop {
         match it.nth(l - 1) {
             Some(e) => {
@@ -19,15 +28,17 @@ fn pack<T: Clone+Eq>(list: &[T]) -> ~[~[T]] {
     result
 }
 
-fn main() {
-    let list =
-        ~['a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e'];
+#[test]
+fn test09_pack_() {
+    let vector = ~['a', 'a', 'a', 'a', 'b', 'c', 'c', 'a',
+    'a', 'd', 'e', 'e', 'e', 'e'];
 
-    assert!(pack(list) ==
-            ~[~['a', 'a', 'a', 'a'],
-              ~['b'],
-              ~['c', 'c'],
-              ~['a', 'a'],
-              ~['d'],
-              ~['e', 'e', 'e', 'e']]);
+    assert!(pack(vector) == ~[
+            ~['a', 'a', 'a', 'a'],
+            ~['b'],
+            ~['c', 'c'],
+            ~['a', 'a'],
+            ~['d'],
+            ~['e', 'e', 'e', 'e']
+            ]);
 }
