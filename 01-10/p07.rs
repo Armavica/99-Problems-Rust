@@ -16,8 +16,8 @@
 //!
 //! Flatten a nested vector structure.
 //!
-//! Your function must have this signature:
-//! `fn flatten<T: Clone>(n_vector: &~[Node<T>]) -> ~[T]`
+//! Your function could have this signature:
+//! `fn flatten<T>(n_vector: Node<T>) -> ~[T]`
 //!
 
 enum Node<T> {

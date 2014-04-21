@@ -8,8 +8,8 @@
 //! Run-length encoding of a vector.
 //! Memory refresh: http://en.wikipedia.org/wiki/Run-length_encoding
 //!
-//! Your function must have this signature:
-//! `fn encode<T: Clone>(vector: ~[~[T]]) -> ~[Node<T>]`
+//! Your function could have this signature:
+//! `fn encode<T>(vec: ~[~[T]]) -> ~[(uint, T)]`
 //!
 
 #[deriving(Eq)]

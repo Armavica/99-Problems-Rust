@@ -6,8 +6,8 @@
 //! Problem 02: Vectors: last but one
 //!
 //! Find the last but one (last and penultimate) elements of a vector.
-//! Your function must have this signature:
-//! `fn last_but_one<'a, T>(vector: &'a [T]) -> Option<(&'a T, &'a T)>`
+//! Your function could have this signature:
+//! `fn last_but_one<'a, T>(vec: &'a [T]) -> Option<(&'a T, &'a T)>`
 //!
 
 fn last_but_one<'a, T>(vector: &'a [T]) -> Option<(&'a T, &'a T)> {

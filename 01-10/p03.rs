@@ -6,8 +6,8 @@
 //! Problem 03: Vectors: kth
 //!
 //! Find the `k`th element of a vector.
-//! Your function must have this signature:
-//! `fn kth<'a, T>(k:uint, vector: &'a [T]) -> Option<&'a T>`
+//! Your function could have this signature:
+//! `fn kth<'a, T>(k: uint, vec: &'a [T]) -> Option<&'a T>`
 //!
 
 fn kth<'a, T>(k: uint, vector: &'a [T]) -> Option<&'a T> {

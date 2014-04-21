@@ -5,9 +5,9 @@
 
 //! Problem 01: Vectors: last
 //! 
-//! Write a function that returns the last element of a vector.
-//! Your function must have this signature:
-//! `fn last<'a, T>(vector: &'a [T]) -> Option<&'a T>`
+//! Write a function that returns a reference to the last element of a vector.
+//! Your function could have this signature:
+//! `fn last<'a, T>(vec: &'a [T]) -> Option<&'a T>`
 //!
 
 fn last<'a, T>(vector: &'a [T]) -> Option<&'a T> {

@@ -5,11 +5,10 @@
 
 //! Problem 04: Vectors: length
 //!
-//! Compute the number of elements of a vector.  There is a method for it in
-//! the standard library, you can use it or reimplement it.
+//! Compute the number of elements of a vector.
 //!
-//! Your function must have this signature:
-//! `fn length<T>(vector: &[T]) -> uint`
+//! Your function could have this signature:
+//! `fn length<T>(vec: &[T]) -> uint`
 //!
 
 fn length<T>(vector: &[T]) -> uint {

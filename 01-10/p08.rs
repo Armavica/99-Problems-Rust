@@ -7,8 +7,8 @@
 //!
 //! Eliminate consecutive duplicates of vector elements.
 //!
-//! Your function must have this signature:
-//! `fn compress<T: Eq>(vector: ~[T]) -> ~[T]`
+//! Your function could have this signature:
+//! `fn compress<T: Eq>(vec: ~[T]) -> ~[T]`
 //!
 
 fn compress<T: Eq>(vector: ~[T]) -> ~[T] {

@@ -7,8 +7,8 @@
 //! 
 //! Pack consecutive duplicates of vectors elements into sub-vectors.
 //!
-//! Your function must have this signature:
-//! `fn pack<T: Clone+Eq>(vector: &[T]) -> ~[~[T]]`
+//! Your function could have this signature:
+//! `fn pack<T: Eq>(vec: ~[T]) -> ~[~[T]]`
 //!
 
 fn pack<T: Clone+Eq>(vector: &[T]) -> ~[~[T]] {

@@ -7,9 +7,8 @@
 //!
 //! Determine if the vector passed is a palindrome or not.
 //!
-//! Your function must have this signature:
+//! Your function could have this signature:
 //! `fn is_palindrome<T: Eq>(vector: &[T]) -> bool`
-//!
 
 /// Returns whether the argument is a palindrome, recursive version
 fn is_palindrome_pm<T: Eq>(vector: &[T]) -> bool {

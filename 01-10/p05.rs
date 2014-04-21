@@ -3,11 +3,9 @@
 // be used, distorted or destroyed in any manner whatsoever without further
 // attribution or notice to the creator.
 
-//! Problem 05: Vectors: rev
+//! Problem 05: Vectors: reverse
 //!
 //! Reverse a vector.
-//! Rust standard library has a method for this.
-//! You can use it or reimplement it.
 //!
 //! Your function must have this signature:
 //! `fn rev<T>(vector: ~[T]) -> ~[T]`
