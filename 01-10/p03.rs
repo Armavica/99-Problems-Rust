@@ -1,5 +1,7 @@
-//
-//
+// The author of this work hereby waives all claim of copyright (economic and
+// moral) in this work and immediately places it in the public domain; it may
+// be used, distorted or destroyed in any manner whatsoever without further
+// attribution or notice to the creator.
 
 //! Problem 03: Vectors: kth
 //!
