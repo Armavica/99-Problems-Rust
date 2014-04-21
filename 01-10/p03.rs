@@ -19,11 +19,14 @@ fn kth<'a, T>(k: uint, vec: &'a [T]) -> Option<&'a T> {
 }
 
 #[test]
-fn test03_get_kth() {
-    let vector = ~['a', 'b', 'c', 'd', 'e'];
-    assert!(kth(3, vector) == Some(&'c'));
+fn kth_outofrange() {
+    let vec = ~['a'];
+    assert_eq!(kth(3, vec), None)
+}
 
-    let vector = ~['a'];
-    assert!(kth(3, vector) == None)
+#[test]
+fn kth_inrange() {
+    let vec = ~['a', 'b', 'c', 'd', 'e'];
+    assert_eq!(kth(3, vec), Some(&'c'));
 }
 

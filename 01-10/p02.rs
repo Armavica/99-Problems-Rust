@@ -18,11 +18,20 @@ fn last_but_one<'a, T>(vec: &'a [T]) -> Option<(&'a T, &'a T)> {
 }
 
 #[test]
-fn test02_last_but_one() {
-    let vector = ['a', 'b', 'c', 'd', 'e'];
-    assert!(last_but_one(vector) == Some((&'d', &'e')));
+fn lastbutone_nonempty() {
+    let vec = ~['a', 'b', 'c', 'd', 'e'];
+    assert_eq!(last_but_one(vec), Some((&'d', &'e')));
+}
 
-    let vector = ['a'];
-    assert!(last_but_one(vector) == None);
+#[test]
+fn lastbutone_almostempty() {
+    let vec = ~['a'];
+    assert_eq!(last_but_one(vec), None);
+}
+
+#[test]
+fn lastbutone_empty() {
+    let vec: ~[char] = ~[];
+    assert_eq!(last_but_one(vec), None);
 }
 

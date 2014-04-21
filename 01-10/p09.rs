@@ -25,16 +25,20 @@ fn pack<T: Eq>(vec: ~[T]) -> ~[~[T]] {
 }
 
 #[test]
-fn test09_pack_() {
-    let vector = ~['a', 'a', 'a', 'a', 'b', 'c', 'c', 'a',
-    'a', 'd', 'e', 'e', 'e', 'e'];
+fn pack_test() {
+    let vec = ~['a', 'a', 'a', 'a',
+                'b',
+                'c', 'c',
+                'a', 'a',
+                'd',
+                'e', 'e', 'e', 'e'];
 
-    assert!(pack(vector) == ~[
-            ~['a', 'a', 'a', 'a'],
-            ~['b'],
-            ~['c', 'c'],
-            ~['a', 'a'],
-            ~['d'],
-            ~['e', 'e', 'e', 'e']
-            ]);
+    assert_eq!(pack(vec), ~[
+                            ~['a', 'a', 'a', 'a'],
+                            ~['b'],
+                            ~['c', 'c'],
+                            ~['a', 'a'],
+                            ~['d'],
+                            ~['e', 'e', 'e', 'e']
+                         ]);
 }

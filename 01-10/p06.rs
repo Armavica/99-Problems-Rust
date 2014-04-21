@@ -25,13 +25,23 @@ fn is_palindrome_it<T: Eq>(vector: &[T]) -> bool {
 }
 
 #[test]
-fn test06_is_palindrome() {
-    let vector = ~['x', 'a', 'm', 'a', 'x'];
-    assert!(is_palindrome_pm(vector));
+fn odd_palindrome() {
+    let vector = ~['r', 'a', 'c', 'e', 'c', 'a', 'r'];
+    assert!(is_palindrome_rec(vector));
     assert!(is_palindrome_it(vector));
+}
 
-    let vector = ~['a', 'b'];
-    assert!(!is_palindrome_pm(vector));
+#[test]
+fn even_palindrome() {
+    let vector = ~['n', 'o', 'o', 'n'];
+    assert!(is_palindrome_rec(vector));
+    assert!(is_palindrome_it(vector));
+}
+
+#[test]
+fn not_palidrome() {
+    let vector = ~['a', 'b', 'c', 'b', 'e'];
+    assert!(!is_palindrome_rec(vector));
     assert!(!is_palindrome_it(vector));
 }
 

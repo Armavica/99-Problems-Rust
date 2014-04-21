@@ -18,13 +18,14 @@ fn last<'a, T>(vec: &'a [T]) -> Option<&'a T> {
 }
 
 #[test]
-fn test01_last() {
-    let vector = ['a', 'b', 'c'];
-    let empty: &[char] = [];
+fn last_nonempty() {
+    let vec = ~['a', 'b', 'c'];
+    assert_eq!(last(vec), Some(&'c'));
+}
 
-    assert!(last(vector) == Some(&'c'));
-    assert!(vector.last() == Some(&'c'));
-    assert!(last(empty) == None);
-    assert!(empty.last() == None);
+#[test]
+fn last_empty() {
+    let vec: ~[char] = ~[];
+    assert_eq!(last(vec), None);
 }
 

@@ -30,14 +30,14 @@ fn encode<T>(vec: ~[~[T]]) -> ~[(uint, T)] {
 }
 
 #[test]
-fn test10_encode() {
-    let vector = ~['a', 'a', 'a', 'a', 'b', 'c', 'c',
-    'a', 'a', 'd', 'e', 'e', 'e', 'e'];
+fn encode_test() {
+    let vec = ~['a', 'a', 'a', 'a', 'b', 'c', 'c',
+                'a', 'a', 'd', 'e', 'e', 'e', 'e'];
 
-    assert!(encode(pack(vector)) == ~[Many(4, 'a'),
-    One('b'),
-    Many(2, 'c'),
-    Many(2, 'a'),
-    One('d'),
-    Many(4, 'e')])
+    assert_eq!(encode(pack(vec)), ~[(4, 'a'),
+                                    (1, 'b'),
+                                    (2, 'c'),
+                                    (2, 'a'),
+                                    (1, 'd'),
+                                    (4, 'e')])
 }

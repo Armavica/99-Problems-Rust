@@ -16,11 +16,14 @@ fn length<T>(vec: &[T]) -> uint {
 }
 
 #[test]
-fn test04_length() {
-    let vector = ~['a', 'b', 'c'];
-    assert!(length(vector) == 3);
+fn length_nonempty() {
+    let vec = ~['a', 'b', 'c'];
+    assert_eq!(length(vec), 3);
+}
 
-    let vector: ~[uint] = ~[];
-    assert!(length(vector) == 0);
+#[test]
+fn length_empty() {
+    let vec: ~[uint] = ~[];
+    assert_eq!(length(vec), 0);
 }
 

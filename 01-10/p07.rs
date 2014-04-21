@@ -34,9 +34,9 @@ fn flatten<T>(nestvec: Node<T>) -> ~[T] {
 }
 
 #[test]
-fn test07_flatten() {
-    let n_vector = ~[One('a'), Many(~[One('b'), Many(~[One('c'), One('d')]), One('e')])];
-
-    assert!(flatten(&n_vector) == ~['a', 'b', 'c', 'd', 'e']);
+fn flatten_test() {
+    let nestvec =
+        Many(~[One('a'), Many(~[One('b'), Many(~[One('c'), One('d')]), One('e')])]);
+    assert_eq!(flatten(nestvec), ~['a', 'b', 'c', 'd', 'e']);
 }
 

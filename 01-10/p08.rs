@@ -28,10 +28,11 @@ fn compress_lib<T: Eq>(vec: ~[T]) -> ~[T] {
 }
 
 #[test]
-fn test08_compress() {
-    let vector = ~['a', 'a', 'a', 'a', 'b', 'c', 'c',
-    'a', 'a', 'd', 'e', 'e', 'e', 'e'];
+fn compress_test() {
+    let vec = ~['a', 'a', 'a', 'a', 'b', 'c', 'c',
+                'a', 'a', 'd', 'e', 'e', 'e', 'e'];
 
-    assert!(compress(vector) == ~['a', 'b', 'c', 'a', 'd', 'e']);
+    assert_eq!(compress_rec(vec.clone()), ~['a', 'b', 'c', 'a', 'd', 'e']);
+    assert_eq!(compress_lib(vec), ~['a', 'b', 'c', 'a', 'd', 'e']);
 }
 
