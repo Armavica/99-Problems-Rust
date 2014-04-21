@@ -1,15 +1,27 @@
-fn repli<T: Clone>(list: &[T], n: uint) -> ~[T] {
-    let mut r = ~[];
-    for e in list.iter() {
-        for _ in range(0, n) {
-            r.push(e.clone());
-        }
-    }
-    r
+// The author of this work hereby waives all claim of copyright (economic and
+// moral) in this work and immediately places it in the public domain; it may
+// be used, distorted or destroyed in any manner whatsoever without further
+// attribution or notice to the creator.
+
+//! Problem 15: Vectors: replicate
+//!
+//! Replicate the elements of a vector a given number of times.
+//!
+//! Your function could have this signature:
+//! `fn repli<T: Clone>(n: uint, vec: ~[T]) -> ~[T]`
+
+fn repli<T: Clone>(n: uint, vec: ~[T]) -> ~[T] {
+    vec.move_iter().flat_map(|e| Vec::from_elem(n, e).move_iter()).collect()
 }
 
-fn main() {
-    let list = ~['a', 'b', 'c'];
-    println!("{:?}", repli(list, 3));
+#[test]
+fn dupli_0() {
+    let vec = ~['a', 'b', 'c', 'c', 'd'];
+    assert_eq!(repli(0, vec), ~[]);
 }
 
+#[test]
+fn dupli_2() {
+    let vec = ~['a', 'b', 'c', 'c', 'd'];
+    assert_eq!(repli(2, vec), ~['a', 'a', 'b', 'b', 'c', 'c', 'c', 'c', 'd', 'd']);
+}
