@@ -25,11 +25,12 @@ enum Node<T> {
     Many(~[Node<T>])
 }
 
-fn flatten<T: Clone>(n_vector: &~[Node<T>]) -> ~[T] {
-    n_vector.flat_map(|n| match *n {
-        One(ref e) => ~[e.clone()],
-        Many(ref el) => flatten(el)
-    })
+fn flatten<T>(nestvec: Node<T>) -> ~[T] {
+    match nestvec {
+        One(v)      => ~[v],
+        Many(vec)   =>
+            vec.move_iter().flat_map(|node| flatten(node).move_iter()).collect()
+    }
 }
 
 #[test]

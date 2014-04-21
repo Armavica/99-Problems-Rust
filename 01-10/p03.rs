@@ -10,9 +10,9 @@
 //! `fn kth<'a, T>(k: uint, vec: &'a [T]) -> Option<&'a T>`
 //!
 
-fn kth<'a, T>(k: uint, vector: &'a [T]) -> Option<&'a T> {
-    if vector.len() >= k && k > 0{
-        Some(&vector[k-1])
+fn kth<'a, T>(k: uint, vec: &'a [T]) -> Option<&'a T> {
+    if vec.len() >= k && k > 0{
+        Some(&vec[k-1])
     } else {
         None
     }

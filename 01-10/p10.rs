@@ -12,38 +12,21 @@
 //! `fn encode<T>(vec: ~[~[T]]) -> ~[(uint, T)]`
 //!
 
-#[deriving(Eq)]
-enum Node<T> {
-    One(T),
-    Many(uint, T)
-}
+fn pack<T: Eq>(vec: ~[T]) -> ~[~[T]] {
+    let mut result: ~[~[T]] = ~[];
 
-fn pack<T: Clone+Eq>(vector: &[T]) -> ~[~[T]] {
-    let mut it = vector.iter();
-    let mut result = ~[];
-    let mut l = 1;
-    loop {
-        match it.nth(l - 1) {
-            Some(e) => {
-                let mut slice = ~[];
-                slice.push(e.clone());
-                for f in it.take_while(|&a| *a == *e) {
-                    slice.push(f.clone());
-                }
-                l = slice.len();
-                result.push(slice);
-            },
-            None    => break
+    for elem in vec.move_iter() {
+        if result.last().is_none() || result.last().unwrap().last().unwrap() != &elem {
+            result.push(~[elem])
+        } else {
+            result.mut_last().unwrap().push(elem)
         }
     }
     result
 }
 
-fn encode<T: Clone>(vector: ~[~[T]]) -> ~[Node<T>] {
-    vector.map(|e| match e.len() {
-        1 => One(e[0].clone()),
-        n => Many(n, e[0].clone())
-    })
+fn encode<T>(vec: ~[~[T]]) -> ~[(uint, T)] {
+    vec.move_iter().map(|e| (e.len(), e[0])).collect()
 }
 
 #[test]

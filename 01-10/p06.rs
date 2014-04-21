@@ -11,23 +11,17 @@
 //! `fn is_palindrome<T: Eq>(vector: &[T]) -> bool`
 
 /// Returns whether the argument is a palindrome, recursive version
-fn is_palindrome_pm<T: Eq>(vector: &[T]) -> bool {
+fn is_palindrome_rec<T: Eq>(vector: &[T]) -> bool {
     match vector {
         [] | [_] => true,
-        [ref x, ..rest, ref y] if x == y => is_palindrome_pm(rest),
+        [ref x, ..rest, ref y] if x == y => is_palindrome_rec(rest),
         _ => false
     }
 }
 
-/// Returns whether the argument is a palindrome, iterative version
+/// Returns whether the argument is a palindrome, version with iterators
 fn is_palindrome_it<T: Eq>(vector: &[T]) -> bool {
-    let mut comp = vector.iter().zip(vector.rev_iter());
-    for (a, b) in comp {
-        if *a != *b {
-            return false
-        }
-    }
-    true
+    vector.iter().zip(vector.rev_iter()).all(|(a, b)| a == b)
 }
 
 #[test]

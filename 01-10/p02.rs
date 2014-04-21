@@ -10,8 +10,8 @@
 //! `fn last_but_one<'a, T>(vec: &'a [T]) -> Option<(&'a T, &'a T)>`
 //!
 
-fn last_but_one<'a, T>(vector: &'a [T]) -> Option<(&'a T, &'a T)> {
-    match vector {
+fn last_but_one<'a, T>(vec: &'a [T]) -> Option<(&'a T, &'a T)> {
+    match vec {
         [] | [_] => None,
         [.., ref x, ref y] => Some((x, y))
     }

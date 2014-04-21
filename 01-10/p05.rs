@@ -7,17 +7,23 @@
 //!
 //! Reverse a vector.
 //!
-//! Your function must have this signature:
-//! `fn rev<T>(vector: ~[T]) -> ~[T]`
+//! Your function could have this signature:
+//! `fn reverse<T>(vec: ~[T]) -> ~[T]`
 //!
 
-fn rev<T>(vector: ~[T]) -> ~[T] {
-    vector.move_rev_iter().collect()
+fn reverse<T>(vec: ~[T]) -> ~[T] {
+    vec.move_rev_iter().collect()
 }
 
 #[test]
-fn test05_rev() {
-    let vector = ~['a', 'b', 'c', 'd', 'e'];
-    assert!(rev(vector) == ~['e', 'd', 'c', 'b', 'a']);
+fn reverse_nonempty() {
+    let vec = ~['a', 'b', 'c', 'd', 'e'];
+    assert_eq!(reverse(vec), ~['e', 'd', 'c', 'b', 'a']);
+}
+
+#[test]
+fn reverse_empty() {
+    let vec: ~[char] = ~[];
+    assert_eq!(reverse(vec), ~[]);
 }
 

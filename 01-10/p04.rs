@@ -11,8 +11,8 @@
 //! `fn length<T>(vec: &[T]) -> uint`
 //!
 
-fn length<T>(vector: &[T]) -> uint {
-    vector.len()
+fn length<T>(vec: &[T]) -> uint {
+    vec.len()
 }
 
 #[test]

@@ -10,8 +10,8 @@
 //! `fn last<'a, T>(vec: &'a [T]) -> Option<&'a T>`
 //!
 
-fn last<'a, T>(vector: &'a [T]) -> Option<&'a T> {
-    match vector {
+fn last<'a, T>(vec: &'a [T]) -> Option<&'a T> {
+    match vec {
         [] => None,
         [.., ref x] => Some(x)
     }

@@ -11,10 +11,20 @@
 //! `fn compress<T: Eq>(vec: ~[T]) -> ~[T]`
 //!
 
-fn compress<T: Eq>(vector: ~[T]) -> ~[T] {
-    let mut vector = vector;
-    vector.dedup();
-    vector
+fn compress_rec<T: Eq>(vec: ~[T]) -> ~[T] {
+    let mut result = ~[];
+    for elem in vec.move_iter() {
+        if result.last().is_none() || result.last().unwrap() != &elem {
+            result.push(elem)
+        }
+    }
+    result
+}
+
+fn compress_lib<T: Eq>(vec: ~[T]) -> ~[T] {
+    let mut r = vec;
+    r.dedup();
+    r
 }
 
 #[test]
