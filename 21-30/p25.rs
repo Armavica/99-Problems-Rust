@@ -1,11 +1,20 @@
-use std::rand::{task_rng, Rng};
+// The author of this work hereby waives all claim of copyright (economic and
+// moral) in this work and immediately places it in the public domain; it may
+// be used, distorted or destroyed in any manner whatsoever without further
+// attribution or notice to the creator.
 
-fn rnd_permu<T>(list: ~[T]) -> ~[T] {
-    task_rng().shuffle(list)
+//! Problem 25: Vectors: rnd_permu
+//!
+//! Generate a random permutation of the elements of a vector.
+//!
+//! Your function could have this signature:
+//! `fn rnd_permu<T>(vec: ~[T]) -> Vec<T>`
+
+extern crate rand;
+use rand::{task_rng, Rng};
+
+fn rnd_permu<T>(vec: ~[T]) -> ~[T] {
+    let mut vec = vec;
+    task_rng().shuffle(vec);
+    vec
 }
-
-fn main() {
-    let list = ~['a', 'b', 'c', 'd', 'e', 'f'];
-    println!("{:?}", rnd_permu(list));
-}
-
