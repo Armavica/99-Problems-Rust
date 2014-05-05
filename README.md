@@ -16,7 +16,7 @@ ways of doing the same thing.
 TODO
 ----
 
-  * Problems 26 to 28;
+  * Problems 27 and 28;
   * Problems 47 and 48;
   * Problem 50;
   * Problem 60;
