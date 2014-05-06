@@ -128,7 +128,7 @@ fn length_empty() {
 ///
 
 fn reverse<T>(vec: ~[T]) -> ~[T] {
-    vec.move_rev_iter().collect()
+    vec.move_iter().rev().collect()
 }
 
 #[test]
@@ -161,7 +161,7 @@ fn is_palindrome_rec<T: Eq>(vector: &[T]) -> bool {
 
 /// Returns whether the argument is a palindrome, version with iterators
 fn is_palindrome_it<T: Eq>(vector: &[T]) -> bool {
-    vector.iter().zip(vector.rev_iter()).all(|(a, b)| a == b)
+    vector.iter().zip(vector.iter().rev()).all(|(a, b)| a == b)
 }
 
 #[test]
@@ -230,20 +230,20 @@ fn flatten_test() {
 /// `fn compress<T: Eq>(vec: ~[T]) -> ~[T]`
 ///
 
-fn compress_rec<T: Eq>(vec: ~[T]) -> ~[T] {
-    let mut result = ~[];
+fn compress_rec<T: Clone+Eq>(vec: ~[T]) -> ~[T] {
+    let mut result = Vec::new();
     for elem in vec.move_iter() {
         if result.last().is_none() || result.last().unwrap() != &elem {
             result.push(elem)
         }
     }
-    result
+    result.as_slice().to_owned()
 }
 
-fn compress_lib<T: Eq>(vec: ~[T]) -> ~[T] {
-    let mut r = vec;
+fn compress_lib<T: Clone+Eq>(vec: ~[T]) -> ~[T] {
+    let mut r: Vec<T> = vec.move_iter().collect();
     r.dedup();
-    r
+    r.as_slice().to_owned()
 }
 
 #[test]
@@ -263,17 +263,17 @@ fn compress_test() {
 /// `fn pack<T: Eq>(vec: ~[T]) -> ~[~[T]]`
 ///
 
-fn pack<T: Eq>(vec: ~[T]) -> ~[~[T]] {
-    let mut result: ~[~[T]] = ~[];
+fn pack<T: Clone+Eq>(vec: ~[T]) -> ~[~[T]] {
+    let mut result: Vec<Vec<T>> = Vec::new();
 
     for elem in vec.move_iter() {
         if result.last().is_none() || result.last().unwrap().last().unwrap() != &elem {
-            result.push(~[elem])
+            result.push(vec!(elem))
         } else {
             result.mut_last().unwrap().push(elem)
         }
     }
-    result
+    result.move_iter().map(|v| v.as_slice().to_owned()).collect::<Vec<~[T]>>().as_slice().to_owned()
 }
 
 #[test]
@@ -337,6 +337,7 @@ fn encode_test() {
 ///
 
 #[deriving(Eq)]
+#[deriving(Clone)]
 #[deriving(Show)]
 enum Elem<T> {
     Unique(T),
@@ -415,10 +416,10 @@ fn decode_test() {
 /// `fn encode_ter<T>(vec: ~[T]) -> ~[Elem<T>]`
 
 
-fn encode_ter<T: Eq>(vec: ~[T]) -> ~[Elem<T>] {
+fn encode_ter<T: Clone+Eq>(vec: ~[T]) -> ~[Elem<T>] {
     let mut input = vec.move_iter().peekable();
     let mut n = 1;
-    let mut result = ~[];
+    let mut result = Vec::new();
 
     while !input.peek().is_none() {
         match (input.next(), input.peek()) {
@@ -437,7 +438,7 @@ fn encode_ter<T: Eq>(vec: ~[T]) -> ~[Elem<T>] {
             (None, _) => unreachable!()
         }
     }
-    result
+    result.as_slice().to_owned()
 }
 
 #[test]
@@ -598,13 +599,13 @@ fn slice_outside() {
 /// `fn rotate<T>(vec: ~[T], n: int) -> ~[T]`
 
 fn rotate<T: Clone>(vec: ~[T], n: int) -> ~[T] {
-    let mut res = ~[];
+    let mut res = Vec::new();
     let l = vec.len() as int;
     let r: uint = (((n % l) + l) % l) as uint;
 
     res.push_all(vec.slice_from(r));
     res.push_all(vec.slice_to(r));
-    res
+    res.as_slice().to_owned()
 }
 
 #[test]
