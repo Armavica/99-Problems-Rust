@@ -1,21 +1,34 @@
-fn gcd(a: int, b: int) -> int {
-    match (a, b) {
-        (0, b) => b,
-        (a, b) => gcd(b%a, a)
-    }
+// The author of this work hereby waives all claim of copyright (economic and
+// moral) in this work and immediately places it in the public domain; it may
+// be used, distorted or destroyed in any manner whatsoever without further
+// attribution or notice to the creator.
+
+/// Problem 34: Arith: phi
+///
+/// Compute Euler's totient function phi.
+///
+/// Your function could have this signature:
+/// `fn phi(n: uint) -> uint`
+
+extern crate test;
+extern crate num;
+
+fn coprime(a: uint, b: uint) -> bool {
+    num::gcd(a, b) == 1
 }
 
-fn coprime(a: int, b: int) -> bool {
-    gcd(a, b) == 1
-}
-
-fn phi(n: int) -> uint {
+fn phi(n: uint) -> uint {
     range(1, n).filter(|&i| coprime(n, i)).len()
 }
 
-fn main() {
-    println!("{}", phi(10));
-    println!("{}", phi(13));
+#[test]
+fn phi_test() {
+    assert_eq!(phi(10), 4);
+    assert_eq!(phi(13), 12);
 }
 
+#[bench]
+fn phi_bench(b: &mut test::Bencher) {
+    b.iter(|| assert_eq!(phi(10090), 4032))
+}
 
